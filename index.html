@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Валентинка 💛</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        animation: gradientShift 6s ease infinite;
+        overflow: hidden;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          filter: hue-rotate(10deg);
+        }
+      }
+
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 60px 40px;
+        border-radius: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes pop-in {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .heart {
+        font-size: 80px;
+        margin-bottom: 20px;
+        animation: heartbeat 1.2s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+
+      h1 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 40px;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        position: relative;
+        height: 60px;
+      }
+
+      .btn {
+        padding: 15px 40px;
+        font-size: 18px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        min-width: 120px;
+      }
+
+      .btn-yes {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+      }
+
+      .btn-yes:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+      }
+
+      .btn-yes:active {
+        transform: scale(0.95);
+      }
+
+      .btn-no {
+        background: #e0e0e0;
+        color: #666;
+        position: fixed;
+        z-index: 10;
+      }
+
+      .success {
+        text-align: center;
+        animation: success-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes success-pop {
+        0% {
+          opacity: 0;
+          transform: scale(0.5) rotateZ(-10deg);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) rotateZ(0deg);
+        }
+      }
+
+      .success h2 {
+        font-size: 48px;
+        color: #f5576c;
+        margin: 20px 0;
+        animation: wiggle 0.5s ease-in-out 3;
+      }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotateZ(0deg);
+        }
+        25% {
+          transform: rotateZ(5deg);
+        }
+        75% {
+          transform: rotateZ(-5deg);
+        }
+      }
+
+      .success p {
+        font-size: 20px;
+        color: #666;
+        margin-top: 30px;
+        line-height: 1.6;
+      }
+
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #f5576c;
+        pointer-events: none;
+        animation: confetti-fall 3s ease-out forwards;
+      }
+
+      @keyframes confetti-fall {
+        0% {
+          opacity: 1;
+          transform: translateY(0) rotateZ(0deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(100vh) rotateZ(720deg);
+        }
+      }
+
+      .music-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        z-index: 100;
+      }
+
+      .music-toggle:hover {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 1);
+      }
+
+      .music-toggle.playing {
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="music-toggle" id="musicToggle">🔊</button>
+
+    <audio id="audio" loop>
+      <source
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div class="container" id="container">
+      <div class="heart">💛</div>
+      <h1>Ты будешь моей валентинкой?</h1>
+      <div class="buttons">
+        <button class="btn btn-yes" id="btnYes">Да ✨</button>
+        <button class="btn btn-no" id="btnNo">Нет</button>
+      </div>
+    </div>
+
+    <script>
+      const container = document.getElementById("container");
+      const btnYes = document.getElementById("btnYes");
+      const btnNo = document.getElementById("btnNo");
+      const audio = document.getElementById("audio");
+      const musicToggle = document.getElementById("musicToggle");
+
+      let isPlaying = false;
+
+      // Музыка
+      musicToggle.addEventListener("click", () => {
+        if (isPlaying) {
+          audio.pause();
+          musicToggle.textContent = "🔇";
+          musicToggle.classList.remove("playing");
+        } else {
+          audio.play();
+          musicToggle.textContent = "🔊";
+          musicToggle.classList.add("playing");
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Обработчик "ДА"
+      btnYes.addEventListener("click", () => {
+        container.innerHTML = `
+                <div class="success">
+                    <div class="heart">💛💛💛</div>
+                    <h2>Ты ж мой пупсик!</h2>
+                    <p>Люблю тебя бесконечно 🥰</p>
+                    <p style="font-size: 60px; margin-top: 20px;">✨🎉✨</p>
+                </div>
+            `;
+
+        // Конфетти
+        for (let i = 0; i < 50; i++) {
+          createConfetti();
+        }
+      });
+
+      // Обработчик "НЕТ" - убегает от курсора
+      btnNo.addEventListener("mouseover", moveButton);
+      btnNo.addEventListener("touchstart", moveButton);
+
+      function moveButton() {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 60);
+
+        btnNo.style.left = x + "px";
+        btnNo.style.top = y + "px";
+      }
+
+      // Конфетти генератор
+      function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.top = "-10px";
+        confetti.style.background = [
+          "#f5576c",
+          "#f093fb",
+          "#667eea",
+          "#764ba2",
+          "#FFD700",
+        ][Math.floor(Math.random() * 5)];
+        confetti.style.delay = Math.random() * 0.5 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 3500);
+      }
+    </script>
+  </body>
+</html>
