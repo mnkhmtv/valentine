@@ -10,7 +10,6 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         min-height: 100vh;
@@ -21,7 +20,6 @@
         animation: gradientShift 6s ease infinite;
         overflow: hidden;
       }
-
       @keyframes gradientShift {
         0%,
         100% {
@@ -31,17 +29,15 @@
           filter: hue-rotate(10deg);
         }
       }
-
       .container {
         text-align: center;
         background: rgba(255, 255, 255, 0.95);
         padding: 60px 40px;
         border-radius: 30px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        max-width: 500px;
+        max-width: 700px;
         animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
-
       @keyframes pop-in {
         0% {
           opacity: 0;
@@ -52,13 +48,11 @@
           transform: scale(1);
         }
       }
-
       .heart {
         font-size: 80px;
         margin-bottom: 20px;
         animation: heartbeat 1.2s ease-in-out infinite;
       }
-
       @keyframes heartbeat {
         0%,
         100% {
@@ -71,21 +65,42 @@
           transform: scale(1);
         }
       }
-
       h1 {
         font-size: 32px;
         color: #333;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         font-weight: 300;
         letter-spacing: 1px;
+      }
+
+      .plea {
+        font-size: 18px;
+        color: #f5576c;
+        font-weight: 600;
+        margin-bottom: 30px;
+        min-height: 30px;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      .buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
       }
 
       .buttons {
         display: flex;
         gap: 20px;
         justify-content: center;
-        position: relative;
-        height: 60px;
+        align-items: center;
+        width: 100%;
+        min-height: 60px;
       }
 
       .btn {
@@ -95,36 +110,42 @@
         border-radius: 50px;
         cursor: pointer;
         font-weight: 600;
-        transition: all 0.3s ease;
-        min-width: 120px;
+        transition: all 0.4s ease;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+      }
+      
+      .btn:hover {
+        box-shadow: 0 8px 25px rgba(245, 87, 108, 0.5);
+      }
+
+      .btn:active {
+        transform: scale(0.98);
       }
 
       .btn-yes {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        color: white;
-      }
-
-      .btn-yes:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
-      }
-
-      .btn-yes:active {
-        transform: scale(0.95);
+        min-width: 120px;
+        /* МАКСИМАЛЬНАЯ ШИРИНА - после 10 нажатий "Нет" */
+        max-width: 600px;
       }
 
       .btn-no {
-        background: #e0e0e0;
-        color: #666;
-        position: fixed;
-        z-index: 10;
+        min-width: 100px;
+        max-width: 120px;
+        background: linear-gradient(135deg, #e0a8ff 0%, #ff8fab 100%);
+        flex-shrink: 0;
       }
 
       .success {
         text-align: center;
         animation: success-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
-
       @keyframes success-pop {
         0% {
           opacity: 0;
@@ -135,14 +156,12 @@
           transform: scale(1) rotateZ(0deg);
         }
       }
-
       .success h2 {
         font-size: 48px;
         color: #f5576c;
         margin: 20px 0;
         animation: wiggle 0.5s ease-in-out 3;
       }
-
       @keyframes wiggle {
         0%,
         100% {
@@ -155,14 +174,12 @@
           transform: rotateZ(-5deg);
         }
       }
-
       .success p {
         font-size: 20px;
         color: #666;
         margin-top: 30px;
         line-height: 1.6;
       }
-
       .confetti {
         position: fixed;
         width: 10px;
@@ -171,7 +188,6 @@
         pointer-events: none;
         animation: confetti-fall 3s ease-out forwards;
       }
-
       @keyframes confetti-fall {
         0% {
           opacity: 1;
@@ -182,7 +198,6 @@
           transform: translateY(100vh) rotateZ(720deg);
         }
       }
-
       .music-toggle {
         position: fixed;
         top: 20px;
@@ -198,16 +213,13 @@
         transition: all 0.3s ease;
         z-index: 100;
       }
-
       .music-toggle:hover {
         transform: scale(1.1);
         background: rgba(255, 255, 255, 1);
       }
-
       .music-toggle.playing {
         animation: spin 2s linear infinite;
       }
-
       @keyframes spin {
         0% {
           transform: rotate(0deg);
@@ -220,31 +232,92 @@
   </head>
   <body>
     <button class="music-toggle" id="musicToggle">🔊</button>
-
     <audio id="audio" loop>
       <source
-        src="https://drive.google.com/file/d/1Bbv6IBQSJnTk0F55DZDnhGU283hGV91n/view?usp=sharing"
+        src="https://www.dropbox.com/scl/fi/z3y5mm3bclm7u2l92mzrz/jandro-idealnye.mp3?rlkey=2mc1fqv9rvp3k0l5i8i8l9356&st=okqmvomo&dl=1"
         type="audio/mpeg"
       />
     </audio>
-
     <div class="container" id="container">
       <div class="heart">💛</div>
       <h1>Ты будешь моей валентинкой?</h1>
-      <div class="buttons">
-        <button class="btn btn-yes" id="btnYes">Да ✨</button>
-        <button class="btn btn-no" id="btnNo">Нет</button>
+      <div class="plea" id="plea"></div>
+      <div class="buttons-wrapper">
+        <div class="buttons">
+          <button class="btn btn-yes" id="btnYes">Да ✨</button>
+          <button class="btn btn-no" id="btnNo">Нет</button>
+        </div>
       </div>
     </div>
-
     <script>
       const container = document.getElementById("container");
       const btnYes = document.getElementById("btnYes");
       const btnNo = document.getElementById("btnNo");
+      const plea = document.getElementById("plea");
       const audio = document.getElementById("audio");
       const musicToggle = document.getElementById("musicToggle");
-
+      
       let isPlaying = false;
+      let noClickCount = 0;
+      let yesFontSize = 18;
+      let noScale = 1;
+
+      const pleas = [
+        "Ты уверен?",
+        "Мне грустно 😢",
+        "Ну давай...",
+        "Это судьба 💫",
+        "Ну пожалуйста, это важно!",
+        "Я буду рядом 💛",
+        "Я верю в нас",
+        "Я тебя умоляю 🥺",
+        "С тобой тепло",
+        "Ты самый лучший",
+        "Ты же пупсик",
+        "Ну не надо",
+        "Нельзя так со мной",
+        "Мое сердце ломается 💔",
+        "Подумай еще раз",
+        "Я для тебя всё",
+        "Это же валентинка!",
+        "Ты для меня всё 💕",
+        "Не оставляй меня",
+        "Это моя мечта",
+        "Ты мне всё",
+        "Давай вместе",
+        "Я не могу без тебя",
+        "Ты сделаешь меня счастливой",
+        "Это жизнь или смерть",
+        "Я клянусь, будет хорошо",
+        "Ты же знаешь как я тебя люблю",
+        "Не порви мне сердце",
+        "Пожалуйста, согласись",
+        "Я буду лучшей валентинкой",
+        "Ты ж знаешь правду",
+        "Это наш момент",
+        "Я готова на всё",
+        "Ты мой единственный",
+        "Вот пожалуйста... 🥺"
+      ];
+
+      // Функция для создания пищащего звука
+      function playBeepSound() {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800;
+        oscillator.type = "sine";
+        
+        gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+      }
 
       // Музыка
       musicToggle.addEventListener("click", () => {
@@ -263,31 +336,50 @@
       // Обработчик "ДА"
       btnYes.addEventListener("click", () => {
         container.innerHTML = `
-                <div class="success">
-                    <div class="heart">💛💛💛</div>
-                    <h2>Ты ж мой пупсик!</h2>
-                    <p>Люблю тебя бесконечно 🥰</p>
-                    <p style="font-size: 60px; margin-top: 20px;">✨🎉✨</p>
-                </div>
-            `;
-
+          <div class="success">
+            <div class="heart">💛💛💛</div>
+            <h2>Ты ж мой пупсик!</h2>
+            <p>Люблю тебя бесконечно 🥰</p>
+            <p style="font-size: 60px; margin-top: 20px;">✨🎉✨</p>
+          </div>
+        `;
         // Конфетти
         for (let i = 0; i < 50; i++) {
           createConfetti();
         }
       });
 
-      // Обработчик "НЕТ" - убегает от курсора
-      btnNo.addEventListener("mouseover", moveButton);
-      btnNo.addEventListener("touchstart", moveButton);
-
-      function moveButton() {
-        const x = Math.random() * (window.innerWidth - 120);
-        const y = Math.random() * (window.innerHeight - 60);
-
-        btnNo.style.left = x + "px";
-        btnNo.style.top = y + "px";
-      }
+      // Обработчик "НЕТ"
+      btnNo.addEventListener("click", () => {
+        // Пищащий звук
+        playBeepSound();
+        
+        noClickCount++;
+        
+        // Циклим мольбы
+        const pleaIndex = (noClickCount - 1) % pleas.length;
+        const pleaText = pleas[pleaIndex];
+        plea.textContent = pleaText;
+        
+        // КНОПКА "НЕТ" - уменьшается (но видна)
+        noScale = Math.max(0.6, noScale - 0.08);
+        btnNo.style.transform = `scale(${noScale})`;
+        
+        // КНОПКА "ДА" - увеличивается размер ШРИФТА и ПАДИНГА (макс 10 нажатий)
+        if (noClickCount <= 10) {
+          yesFontSize = Math.min(36, yesFontSize + 1.8);
+          btnYes.style.fontSize = yesFontSize + "px";
+          
+          // Увеличиваем горизонтальный падинг
+          const newPadding = 40 + noClickCount * 8;
+          btnYes.style.padding = `15px ${newPadding}px`;
+        }
+        
+        // Если кнопка "Нет" совсем маленькая
+        if (noScale < 0.65) {
+          btnNo.style.opacity = "0.4";
+        }
+      });
 
       // Конфетти генератор
       function createConfetti() {
@@ -300,12 +392,10 @@
           "#f093fb",
           "#667eea",
           "#764ba2",
-          "#FFD700",
+          "#FFD700"
         ][Math.floor(Math.random() * 5)];
         confetti.style.delay = Math.random() * 0.5 + "s";
-
         document.body.appendChild(confetti);
-
         setTimeout(() => confetti.remove(), 3500);
       }
     </script>
